@@ -7,7 +7,7 @@ export default async function Home() {
   console.log(session);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      {session && <Button>Logout</Button>}
+      {session && <Button>Login</Button>}
       <form action={manageAuth}>
         <Button>{session ? "Logout" : "Login"}</Button>
       </form>
