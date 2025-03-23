@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { createTask } from "../action/create-task";
+import { useRouter } from "next/navigation";
+
 export default function InputCreateTasks({ userId }: { userId: string }) {
+
   const [taskDescription, setTaskDescription] = useState("");
   const [loading, startTransition] = useTransition();
-
+  const router = useRouter();
   function handleCreateTask() {
     console.log("Criando tarefa...");
     console.log("ID do usuário:", userId);
@@ -13,7 +16,10 @@ export default function InputCreateTasks({ userId }: { userId: string }) {
 
     // Aqui você pode adicionar a lógica para armazenar ou processar a tarefa
     // Exemplo: enviar para uma API ou atualizar o estado de uma lista de tarefas
-    createTask(taskDescription);
+    createTask(taskDescription).then(() => {
+        setTaskDescription(""); // Limpa o campo após criação
+        router.refresh(); // Dispara a atualização da lista de tarefas
+      });
   }
 
   return (
