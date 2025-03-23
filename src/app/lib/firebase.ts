@@ -2,7 +2,7 @@ import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 import "server-only";
-
+import { v4 as uuidv4 } from "uuid";
 // Certifcado
 
 const decodedKey = Buffer.from(

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { notFound } from "next/navigation";
 import InfoUser from "../components/infoUser";
 import ListTasks from "../components/listTasks";
-
+import InputCreateTasks from "../components/inputCreateTasks";
 
 export default async function TaskPage({
   params,
@@ -13,21 +13,18 @@ export default async function TaskPage({
 }) {
   
   const session = await auth();
-  console.log("Sessão do usuário:", session); 
 
   if (!session) {
     redirect("/login"); 
   }
 
   const userId = session.user?.id;
-  console.log("ID do usuário autenticado:", userId);
 
   if (!userId) {
     redirect("/login"); 
   }
 
   const profileData = await getProfileData(userId);
-  console.log("Dados do perfil:", profileData);
   
   if (!profileData) return notFound();
 
@@ -37,6 +34,7 @@ export default async function TaskPage({
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-6">
       
       <InfoUser profileData={profileData} />
+      <InputCreateTasks userId={userId} />
 
       <ListTasks tasks={tasks} />
 
