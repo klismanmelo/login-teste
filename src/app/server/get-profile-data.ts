@@ -6,6 +6,7 @@ export type ProfileData = {
     userId: string;
     name: string;
     email: string;
+    image: string;
     createdAt: number;
 };
 
