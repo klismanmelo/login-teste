@@ -10,15 +10,10 @@ export default function InputCreateTasks({ userId }: { userId: string }) {
   const [loading, startTransition] = useTransition();
   const router = useRouter();
   function handleCreateTask() {
-    console.log("Criando tarefa...");
-    console.log("ID do usuário:", userId);
-    console.log("Descrição da tarefa:", taskDescription);
 
-    // Aqui você pode adicionar a lógica para armazenar ou processar a tarefa
-    // Exemplo: enviar para uma API ou atualizar o estado de uma lista de tarefas
     createTask(taskDescription).then(() => {
-        setTaskDescription(""); // Limpa o campo após criação
-        router.refresh(); // Dispara a atualização da lista de tarefas
+        setTaskDescription("");
+        router.refresh(); 
       });
   }
 
